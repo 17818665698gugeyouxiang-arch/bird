@@ -36,9 +36,15 @@ git push origin master
 
 ## 云端故障
 
-2026-09-27 检查时项目域名 DNS 不存在，控制台尚需用户登录确认项目是否暂停。代码接入完成不等于真实账号联通已验证。若项目暂停，在 Supabase 控制台恢复原项目，勿删除重建；恢复后确认登录、同步和跨设备读取。
+2026-09-27 最初因原项目暂停导致域名不可用；用户在控制台点 Resume 后项目已恢复，Auth 返回 200。实际验证通过：新账号注册、登录、仅写入 bird_best_score、第二次登录后读取相同最高分，既有元数据字段保持不变。用于验证的测试账号为 cwkubgumwg，最高分 7，两次测试会话均已退出；未删除任何玩家，测试账号未保存密码。若将来再次暂停，在 Supabase 控制台恢复原项目，勿删除重建。
 
 - GitHub Pages 不依赖 Supabase，云端故障期间仍可玩。
 - 不需要提供 GitHub token、数据库密码或 service_role key 给前端。
 - 官网说明：https://docs.github.com/en/pages/getting-started-with-github-pages/using-custom-workflows-with-github-pages
 - 账号数据说明：https://supabase.com/docs/guides/auth/managing-user-data
+
+## 本次验收
+
+GitHub Actions 首次部署运行 36323334367 成功；线上 3 个发布文件与本地源码一致（忽略换行编码）。22 项游戏检查及云同步专项检查通过。浏览器已验证线上启动、边界失败结算、重新开局资金重置，以及登录面板显示；真实账号接口的注册和跨会话读写另行验证通过。
+
+如本机 Git 直连超时，而 Windows 已配置本地代理，可为单次命令指定当前实际代理。不要把代理地址或 token 写入仓库。
