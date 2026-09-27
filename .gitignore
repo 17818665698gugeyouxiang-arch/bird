@@ -1,0 +1,10 @@
+backups/
+analysis/
+PROGRESS.md
+dist/
+.env
+.env.*
+*.zip
+*.log
+node_modules/
+.deploy-local/

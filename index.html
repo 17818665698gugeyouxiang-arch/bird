@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#0b1117">
+<title>Candle Wings · 飞越行情</title>
+<style>
+:root{color-scheme:dark;--bg:#0b1117;--panel:#101920;--line:#233039;--muted:#83949d;--text:#e3eaeb;--gold:#f0cc83;--cyan:#74d5d1;--up:#f08087;--down:#63c5a7}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,"Segoe UI","Microsoft YaHei",sans-serif}button{font:inherit;cursor:pointer}button:focus-visible{outline:2px solid var(--cyan);outline-offset:5px}button:disabled{cursor:default;opacity:.35}.app{max-width:1560px;margin:auto;padding:0 40px}header{height:100px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line)}.brand{display:flex;align-items:center;gap:13px}.brand svg{width:37px;height:37px}.brand-name{font-size:17px;font-weight:750;letter-spacing:3px}.brand-sub{font-size:10px;color:var(--muted);letter-spacing:2.5px;margin-top:6px}.header-right{display:flex;gap:26px;align-items:center;font-size:11px;color:var(--muted);letter-spacing:1px}.badge{border:1px solid #324443;border-radius:20px;padding:7px 11px;color:#a6c7c1;display:inline-flex;align-items:center;gap:7px}.dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);display:inline-block}.intro{display:flex;justify-content:space-between;align-items:end;padding:36px 0 28px}.eyebrow{color:var(--gold);font-size:10px;font-weight:600;letter-spacing:2.4px;margin-bottom:10px}h1{font-size:30px;font-weight:550;letter-spacing:1px;margin:0}h1 span{color:#657781;font-weight:400;font-size:15px;letter-spacing:0;margin-left:16px}.intro p{margin:0;color:var(--muted);font-size:12px}.workspace{display:grid;grid-template-columns:260px minmax(0,1fr);gap:20px}.market{border:1px solid var(--line);border-radius:13px;background:linear-gradient(150deg,#142028,#0f171e);padding:24px;display:flex;flex-direction:column}.section-label{font-size:10px;letter-spacing:1.7px;color:var(--muted);display:flex;justify-content:space-between;align-items:center}.stock{display:flex;gap:11px;align-items:center;margin-top:28px}.stock-icon{width:38px;height:38px;border:1px solid #5f5540;background:#302d24;border-radius:10px;display:grid;place-items:center;color:var(--gold);font-weight:700}.stock-name{font-size:14px;font-weight:600}.stock-code{font-size:10px;letter-spacing:1.4px;color:var(--muted);margin-top:5px}.quote{font-family:"Consolas",monospace;font-size:43px;letter-spacing:-2px;margin:23px 0 5px}.currency{color:var(--muted);font-size:11px;letter-spacing:1px}.change{font-family:Consolas,monospace;font-size:13px;margin-top:10px;color:var(--up)}.up{color:var(--up)!important}.down{color:var(--down)!important}.spark{width:100%;height:70px;margin-top:13px}.stats{border-top:1px solid var(--line);margin-top:12px;padding-top:12px}.stat{display:flex;justify-content:space-between;align-items:center;margin:16px 0;font-size:11px;color:var(--muted)}.stat b{color:#d4dddf;font-family:Consolas,monospace;font-size:13px;font-weight:400}.record{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--line);margin-top:5px;padding-top:23px;font-size:11px;color:var(--muted)}.record strong{font:24px Consolas,monospace;color:var(--gold)}.market-note{font-size:10px;color:#71838c;line-height:1.9;margin:24px 0 0;padding-top:18px;border-top:1px solid var(--line)}.board{border:1px solid var(--line);border-radius:13px;overflow:hidden;background:#0d171d;display:flex;flex-direction:column;min-width:0}.board-head{height:55px;display:flex;align-items:center;justify-content:space-between;padding:0 21px;border-bottom:1px solid var(--line);font-size:11px}.instrument{font-weight:600;letter-spacing:1px}.instrument span{font-weight:400;color:var(--muted);margin-left:10px;font-size:10px}.board-actions{display:flex;gap:14px;align-items:center}.live-status{font-size:10px;color:#99afae}.icon-btn{height:29px;width:29px;border:1px solid #2b3c43;border-radius:6px;color:#a3b4bb;background:transparent;display:grid;place-items:center}.icon-btn svg{width:12px;height:12px}.stage{position:relative;flex:1;min-height:430px;touch-action:none;overflow:hidden}#game{display:block;width:100%;height:100%;position:absolute;inset:0}.hud{position:absolute;top:21px;left:23px;pointer-events:none}.hud-label{font-size:9px;color:#758c96;letter-spacing:2px}.hud-score{font-family:Consolas,monospace;font-size:38px;margin-top:5px;color:#e1e9e8}.hud-score span{font-size:11px;color:#6b838c;margin-left:9px}.legend{position:absolute;top:24px;right:22px;color:#80969f;font-size:9px;display:flex;gap:12px;pointer-events:none}.legend i{display:inline-block;width:5px;height:9px;margin-right:5px;border-radius:1px}.overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;padding:18px;background:linear-gradient(90deg,#0b141c22,#0b141c88);z-index:2}.overlay[hidden]{display:none}.welcome{text-align:center;max-width:370px;margin-left:12%;padding:20px 10px}.pill{display:inline-flex;align-items:center;gap:7px;font-size:9px;color:var(--gold);letter-spacing:2px;border:1px solid #5c5038;border-radius:4px;background:#26271fcc;padding:7px 10px}.welcome h2{font-size:36px;letter-spacing:2px;font-weight:500;margin:22px 0 12px}.welcome p{font-size:12px;color:#9aadb5;line-height:2;margin:0 0 24px}.primary{border:0;border-radius:7px;background:var(--gold);color:#25251f;font-size:13px;font-weight:650;min-width:182px;padding:14px 22px;box-shadow:0 3px 22px #ecc88515}.primary:hover{background:#ffdda0}.primary span{margin-left:25px;font-size:17px}.keyhint{font-size:10px;color:#728993;margin-top:18px}kbd{font:10px inherit;border:1px solid #3c4d56;border-radius:3px;padding:2px 5px;color:#a6b6bd}.board-foot{height:40px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;font:9px Consolas,monospace;color:#6e858e;border-top:1px solid var(--line);letter-spacing:.7px}.instructions{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin:27px 0}.instruction{display:flex;gap:13px;align-items:center}.step{font:11px Consolas,monospace;border:1px solid var(--line);width:31px;height:31px;border-radius:8px;display:grid;place-items:center;color:var(--gold);flex-shrink:0}.instruction h3{font-size:11px;font-weight:500;margin:0 0 6px}.instruction p{font-size:10px;color:var(--muted);margin:0;line-height:1.7}footer{border-top:1px solid var(--line);display:flex;justify-content:space-between;font-size:9px;color:#5c717c;padding:21px 0;letter-spacing:1px}.result{width:360px;max-width:100%;padding:24px;background:#111e27f5;border:1px solid #43524d;border-radius:13px;box-shadow:0 18px 70px #0006;text-align:center}.result h2{font-size:23px;margin:10px 0 4px;font-weight:500}.result .reason{font-size:11px;color:#95a8af;margin:0 0 12px}.result-score{font:48px Consolas,monospace;color:var(--gold)}.result-score small{font:10px "Microsoft YaHei",sans-serif;color:var(--muted);margin-left:9px}.best-line{font-size:10px;color:#a6b8bc;margin:3px 0 10px}.result-chart{width:100%;height:62px;background:#0c161d;border-radius:5px}.result-stats{display:grid;grid-template-columns:1fr 1fr;text-align:left;gap:12px;margin:16px 0 19px}.result-stats div{font-size:10px;color:var(--muted)}.result-stats b{font:14px Consolas,monospace;display:block;margin-top:5px;color:#e3eaeb}.result .primary{width:100%;padding:12px}.result .eyebrow{margin-bottom:0}.pause-card{background:#111e27ee;border:1px solid var(--line);border-radius:12px;margin:0;padding:30px}.pause-card h2{font-size:25px}.flash{position:absolute;inset:0;background:#f0808726;pointer-events:none;opacity:0}.flash.hit{animation:hit .35s ease-out}@keyframes hit{from{opacity:1}to{opacity:0}}@media(min-width:1450px){.stage{min-height:520px}}@media(max-width:1050px){.app{padding:0 22px}.workspace{grid-template-columns:220px minmax(0,1fr);gap:14px}.market{padding:20px}.intro p{display:none}.welcome{margin-left:0}.welcome h2{font-size:31px}}@media(max-width:700px){.app{padding:0 14px}header{height:71px}.brand-name{font-size:13px;letter-spacing:2px}.brand-sub{font-size:8px}.brand svg{width:30px}.header-right{gap:0}.header-right>span{display:none}.badge{font-size:9px;padding:6px 9px}.intro{padding:21px 0 19px}.eyebrow{font-size:8px}h1{font-size:23px}h1 span{font-size:11px;margin-left:9px}.workspace{display:flex;flex-direction:column;gap:12px}.market{padding:13px 15px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:7px 12px;align-items:center}.market>.section-label,.spark,.market-note,.currency{display:none}.stock{margin:0;grid-column:1}.stock-icon{width:27px;height:27px;border-radius:6px;font-size:12px}.stock-name{font-size:11px}.stock-code{font-size:8px}.quote-wrap{grid-column:2;grid-row:1;text-align:center}.quote{font-size:26px;margin:0}.change{font-size:10px;margin-top:3px}.stats{grid-column:1/4;grid-row:2;display:flex;justify-content:space-between;padding-top:7px;margin:0}.stat{margin:0;font-size:9px;gap:7px}.stat b{font-size:10px}.record{grid-column:3;grid-row:1;border:0;padding:0;margin:0;display:block;text-align:right;font-size:9px}.record strong{font-size:20px;display:block;margin-top:2px}.board-head{height:44px;padding:0 13px}.instrument{font-size:10px}.instrument span{font-size:8px;margin-left:5px}.board-actions{gap:8px}.stage{height:clamp(390px,59svh,620px);min-height:390px;flex:auto}.hud{left:17px;top:17px}.hud-score{font-size:31px}.legend{top:19px;right:14px;font-size:8px}.welcome h2{font-size:30px}.welcome p{font-size:11px}.board-foot{padding:0 11px;height:34px;font-size:8px}.instructions{gap:10px;margin:20px 0}.instruction{gap:7px;align-items:start}.step{width:23px;height:23px;font-size:9px;border-radius:5px}.instruction h3{font-size:10px}.instruction p{font-size:9px}.result{padding:17px;max-width:310px}.result h2{font-size:21px}.result-score{font-size:38px}.result-stats{gap:9px;margin:12px 0}.result-chart{height:48px}footer{font-size:8px;letter-spacing:0;gap:12px;padding:16px 0}}@media(prefers-reduced-motion:reduce){.flash.hit{animation:none}}
+
+/* Compact live trading layout */
+:root{--up:#ff454f;--down:#00d69b}header{height:72px}.app{padding:0 24px}.workspace{grid-template-columns:255px minmax(0,1fr);gap:16px;margin:18px 0}.market{padding:19px}.stock{margin:0;font-size:13px;font-weight:600;justify-content:space-between}.stock span{color:var(--muted);font:10px Consolas,monospace}.quote{font-size:37px;margin:13px 0 0}.change{font-size:12px;margin-top:5px}.brand small{font-size:11px;color:var(--muted);font-weight:400}.logo{font-size:29px;color:var(--gold)}.price-stats{display:flex;justify-content:space-between;margin-top:14px;padding-bottom:15px;border-bottom:1px solid var(--line)}.price-stats div{font-size:9px;color:var(--muted)}.price-stats b{display:block;font:12px Consolas,monospace;color:var(--text);margin-top:5px}.account{margin-top:17px}.account .eyebrow{font-size:9px;color:var(--muted)}.equity{font:27px Consolas,monospace;color:var(--gold)}.pnl{font:12px Consolas,monospace;margin:6px 0 12px}.stat{margin:10px 0}.stat b{font-size:12px}.trade{border-top:1px solid var(--line);margin-top:15px;padding-top:15px}.trade-title{display:flex;justify-content:space-between;font-size:12px;margin-bottom:11px}.trade-title span{font-size:9px;color:var(--muted)}input{font:inherit;min-width:0;border:1px solid #3b505b;background:#0b151b;border-radius:5px;color:var(--text);padding:8px 9px}input:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}.rate{display:flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);margin-bottom:10px}.rate input{width:66px;font:14px Consolas,monospace;padding:5px}.rate small{font-size:9px}.trade-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px}.trade-buttons button{border-radius:6px;border:1px solid #844147;background:#442b3099;color:var(--up);padding:10px 3px;font-size:12px}.trade-buttons .sell{border-color:#285d50;background:#183b3299;color:var(--down)}.trade-buttons small{display:block;font:10px Consolas,monospace;margin-top:5px}.key{display:inline-block;border:1px solid currentColor;border-radius:3px;padding:0 4px;margin-left:4px;font:10px Consolas,monospace}.trade-hint{font-size:9px;line-height:1.7;color:var(--muted);margin:9px 0 0}.notice{min-height:31px;font-size:10px;line-height:1.55;color:var(--gold);margin:10px 0 0}.exit{width:100%;background:transparent;border:1px solid #59614e;border-radius:6px;padding:10px;font-size:11px;color:var(--gold);margin-top:4px}.board-head{height:45px}.board-foot{height:35px}.stage{min-height:530px}.card{width:345px;max-width:100%;max-height:100%;overflow:auto;padding:24px;background:#12212af5;border:1px solid #40534f;border-radius:12px;box-shadow:0 16px 55px #0006;text-align:center}.card h1,.card h2{font-size:25px;font-weight:500;margin:7px 0 12px}.card p{font-size:11px;line-height:1.8;color:var(--muted);margin:9px 0 17px}.gold{color:var(--gold)!important}.initial-field{display:flex;align-items:center;gap:9px;margin:16px 0 10px;text-align:left}.initial-field label{font-size:11px;color:var(--muted);white-space:nowrap}.initial-field input{width:100%;font:18px Consolas,monospace}.presets{display:flex;gap:7px;margin-bottom:17px}.presets button{flex:1;background:#1c303a;border:1px solid #3b535e;color:#cfdddf;border-radius:5px;padding:7px;font-size:11px}.card .primary{width:100%;padding:12px;min-width:0}.input-error{font-size:10px;color:var(--up);min-height:17px;margin:4px 0}.result-pnl{font:34px Consolas,monospace;margin:13px 0 6px}.result-line{font-size:10px;color:var(--muted);margin-bottom:12px}.overlay{background:#08131c77}.hud-score small{font-size:10px;color:#819ba6;margin-left:10px}.hud-score small span{font:inherit;margin:0}.flash{background:#ff454f30}footer{padding:0 0 16px;border:0;letter-spacing:0}button:hover:not(:disabled){filter:brightness(1.15)}[hidden]{display:none!important}
+@media(max-width:850px){.app{padding:0 12px}.workspace{grid-template-columns:210px minmax(0,1fr);gap:10px}.market{padding:14px}.brand small,.instrument span{display:none}.card{padding:19px}}
+@media(max-width:700px){header{height:57px}.workspace{display:flex;flex-direction:column-reverse;gap:10px;margin:12px 0}.stage{height:clamp(370px,55svh,540px);min-height:370px;flex:none}.board-head{height:37px}.board-foot{height:29px;font-size:8px;padding:0 10px}.market{display:grid;grid-template-columns:1fr 1fr;gap:0 15px;padding:13px}.quote-section{grid-column:1}.quote{font-size:29px;margin-top:8px}.change{font-size:10px}.stock{font-size:11px}.stock span{font-size:8px}.price-stats{gap:5px;margin-top:10px;padding-bottom:0;border:none}.price-stats div{font-size:8px}.price-stats b{font-size:10px}.account{grid-column:2;grid-row:1;margin:0}.equity{font-size:22px}.pnl{font-size:10px;margin:4px 0 6px}.stat{font-size:9px;margin:6px 0}.stat b{font-size:10px}.trade{grid-column:1/3;margin-top:11px;padding-top:10px;display:grid;grid-template-columns:1fr 1fr;column-gap:13px;align-items:start}.trade-title{grid-column:1;font-size:11px;margin-bottom:6px}.trade-title span{font-size:8px}.rate{grid-column:1;grid-row:2;margin:0}.rate input{width:57px}.rate small{display:none}.trade-buttons{grid-column:2;grid-row:1/3}.trade-buttons button{padding:7px 2px;font-size:10px}.trade-buttons small{font-size:9px}.trade-hint{grid-column:1/3;margin-top:6px;font-size:8px}.notice{grid-column:1;min-height:0;margin:7px 0;font-size:9px}.exit{grid-column:2;margin-top:7px;padding:7px;font-size:10px}.card{padding:17px;width:305px}.card h1,.card h2{font-size:22px}.card p{margin:7px 0 10px;font-size:10px}.result-pnl{font-size:29px;margin:8px 0 4px}.result-chart{height:39px}.result-stats{margin:10px 0;gap:8px}.result-stats b{font-size:12px}.desktop-help{display:none}.initial-field{margin-top:12px}.presets{margin-bottom:10px}}
+
+.position-bar{height:4px;background:#24363e;border-radius:4px}.result-chart{height:96px}.fill-log{white-space:pre-line;text-align:left;font:10px/1.8 Consolas,"Microsoft YaHei",sans-serif;color:#a4b8c0;margin:7px 0 14px}.chart-key{font-size:9px;color:#a4b8c0;margin:6px 0}.card p{line-height:1.7}
+
+.cloud-panel{border-top:1px solid var(--line);margin-top:14px;padding-top:13px;grid-column:1/-1}.cloud-panel summary{cursor:pointer;font-size:11px;color:var(--cyan)}.cloud-panel input{width:100%;font-size:11px;margin:7px 0 0}.cloud-panel button{background:#20353f;border:1px solid #405560;color:var(--text);border-radius:5px;padding:7px 10px;font-size:11px}.cloud-buttons{display:flex;gap:8px;margin-top:9px}.cloud-status,.cloud-caption{font-size:10px;line-height:1.7;color:var(--muted);margin:8px 0 0}.cloud-account{font-size:11px;margin-top:10px;line-height:1.8}.cloud-account b{color:var(--gold)}
+</style>
+</head>
+<body><div class="app">
+<header><div class="brand"><span class="logo">↗</span><strong>CANDLE WINGS</strong><small>飞越行情</small></div><span class="badge">模拟交易 · 每局 ¥2,000</span></header>
+<main class="workspace">
+<aside class="market" aria-label="行情与实时调仓">
+<div class="quote-section"><div class="stock">云翼科技 <span>CWNG</span></div><div class="quote" id="price">128.00</div><div class="change up" id="change">+0.00 (+0.00%)</div><div class="price-stats"><div>开盘<b id="open">128.00</b></div><div>最高<b id="high">128.00</b></div><div>最低<b id="low">128.00</b></div></div></div>
+<div class="account"><div class="eyebrow">本局总资产</div><div class="equity" id="equity">¥2,000.00</div><div class="pnl" id="pnl">+0.00 (+0.00%)</div><div class="stat"><span>可用现金</span><b id="cash">2,000.00</b></div><div class="stat"><span>持仓市值 · <span id="exposure">0.0%</span></span><b id="position">0.00</b></div><div class="stat"><span>成本均价（含买入费）</span><b id="average">—</b></div><div class="stat"><span>已实现盈亏</span><b id="realized">0.00</b></div><div class="stat"><span>交易费用</span><b id="fees">0.00</b></div></div>
+<div class="trade"><div class="trade-title">实时调仓 <span>不暂停飞行</span></div><label class="rate">每次 <input id="rate" type="number" min="1" max="20" step="1" value="10" aria-label="每次调仓比例，上限百分之二十"> % <small>上限 20%</small></label><div class="trade-buttons"><button id="buy" disabled>加仓 <span class="key">A</span><small id="buy-amount">¥200.00</small></button><button id="sell" class="sell" disabled>减仓 <span class="key">D</span><small id="sell-amount">¥0.00</small></button></div><p class="trade-hint">按现金 / 持仓比例调仓 · 买卖各收 1%</p><div class="notice" id="notice" role="status" aria-live="polite">选择投入金额后开始。</div><button class="exit" id="exit" disabled>平仓离场 · 结束本局</button></div>
+<details class="cloud-panel" id="auth-panel"><summary>账号 · 云端最高分</summary><p class="cloud-caption">与肘肘猪共用账号，仅同步飞鸟最高分。</p><form id="auth-form"><input id="auth-name" aria-label="用户名" placeholder="用户名：1–10 位英文字母" autocomplete="username" maxlength="10" required><input id="auth-password" aria-label="密码" placeholder="密码：至少 8 位数字" type="password" autocomplete="current-password" minlength="8" required><div class="cloud-buttons"><button id="auth-login" type="submit">登录</button><button id="auth-signup" type="button">注册</button></div></form><div id="cloud-user" class="cloud-account" hidden><span id="cloud-name"></span> · 云端最高 <b id="cloud-best">0</b> 分<div class="cloud-buttons"><button id="cloud-sync" type="button">同步</button><button id="auth-logout" type="button">退出账号</button></div></div><div id="cloud-status" class="cloud-status" role="status" aria-live="polite">未登录 · 可直接游玩，成绩保存在本机</div></details></aside>
+<section class="board" aria-label="飞行市场"><div class="board-head"><div class="instrument">CWNG <span>FLIGHT CHART</span></div><div class="board-actions"><span id="status">● 等待开盘</span><button class="icon-btn" id="pause" title="暂停 / 继续（P）" aria-label="暂停游戏" disabled>Ⅱ</button></div></div>
+<div class="stage" id="stage"><canvas id="game" role="img" aria-label="空格或点击振翅，A 加仓，D 减仓"></canvas><div class="hud"><div class="hud-label">穿越 / SCORE</div><div class="hud-score"><b id="score">00</b><small>BEST <span id="best">00</span></small></div></div><div class="legend"><span><i style="background:var(--up)"></i>涨</span><span><i style="background:var(--down)"></i>跌</span><span>0.16s / K 线</span></div>
+<div class="overlay" id="welcome"><div class="card"><div class="eyebrow gold">YOUR FLIGHT, YOUR TRADE</div><h1>穿越涨跌行情</h1><p>本局资金 <strong class="gold">¥2,000</strong> · 剩余部分留作现金<br>小鸟越高股价越高 · K 线跟随飞行轨迹<br>撞击或破产即失败 · 通过 8 关才能离场。</p><div class="initial-field"><label for="initial">开局投入 ¥</label><input id="initial" type="number" min="0" max="2000" step="0.01" value="600" inputmode="decimal"></div><div class="presets"><button id="stake-10">200</button><button id="stake-50">1,000</button><button id="stake-100">2,000</button></div><div class="input-error" id="initial-error" role="alert"></div><button class="primary" id="start">开始飞行 ↗</button><p>空格 / 点击振翅 · A 加仓 · D 减仓</p></div></div>
+<div class="overlay" id="paused" hidden><div class="card"><h2>飞行已暂停</h2><p>点击继续，行情与飞行将同步恢复。</p><button class="primary" id="resume">继续飞行 ↗</button></div></div>
+<div class="overlay" id="ended" hidden><div class="card" role="dialog" aria-modal="true" aria-labelledby="result-title"><div class="eyebrow">SESSION CLOSED</div><h2 id="result-title">本局结束</h2><div class="result-line" id="reason"></div><div class="result-pnl" id="final-pnl"></div><div class="result-line">本局盈亏 · <span id="final-score">0</span> 分 · <span id="result-best"></span></div><canvas class="result-chart" id="result-chart" aria-label="本局股价与成交位置，红色三角买入，绿色三角卖出"></canvas><div class="chart-key" id="fill-count"></div><div class="result-stats"><div>结算总资产<b id="final-equity"></b></div><div>本局收益率<b id="final-return"></b></div><div>开盘 → 收盘<b id="final-prices"></b></div><div>价格区间<b id="final-range"></b></div><div>交易价差收益（费前）<b id="final-gross"></b></div><div>交易费用合计<b id="final-fees"></b></div></div><details><summary class="chart-key">最近 6 笔成交 · 支出 / 到账</summary><div class="fill-log" id="fill-log"></div></details><button class="primary" id="restart">新一局 · 重新获得 ¥2,000</button></div></div><div class="flash" id="flash"></div></div>
+<div class="board-foot"><span id="clock">00:00</span><span>SPACE 振翅 · A 加仓 · D 减仓</span><span id="regime">等待行情</span></div></section>
+</main><footer><span class="desktop-help">P 暂停 / 继续　·　调仓单次触发，长按不连单</span><span>下行市场 · 每 30 关有 50% 概率大反弹</span></footer></div>
+<script id="engine">
+'use strict';
+class Portfolio {
+  constructor(feeRate=.01){this.initial=200000;this.cash=this.initial;this.shares=0;this.cost=0;this.realized=0;this.trades=0;this.feeRate=feeRate;this.fees=0;}
+  value(price){return Math.max(0,Math.round(this.shares*price*100));}
+  equity(price){return this.cash+this.value(price);}
+  buy(amount,price){
+    if(!Number.isFinite(amount)||!Number.isFinite(price)||price<=0)return 0;
+    const cents=Math.round(amount*100);if(cents<=0||cents>this.cash)return 0;
+    const fee=Math.ceil(cents*this.feeRate);if(cents<=fee)return 0;
+    this.cash-=cents;this.shares+=(cents-fee)/(100*price);this.cost+=cents;this.fees+=fee;this.trades++;return cents;
+  }
+  saleQuote(fraction,price){const gross=Math.round(this.shares*fraction*price*100),fee=Math.ceil(gross*this.feeRate);return {fee,proceeds:Math.max(0,gross-fee)};}
+  sell(fraction,price){
+    if(!Number.isFinite(fraction)||fraction<=0||fraction>1||!Number.isFinite(price)||price<=0||this.shares<=0)return 0;
+    const units=this.shares*fraction,{proceeds,fee}=this.saleQuote(fraction,price),basis=fraction===1?this.cost:Math.round(this.cost*fraction);
+    if(proceeds<=0&&fraction<1)return 0;
+    this.shares=fraction===1?0:this.shares-units;this.cost-=basis;this.cash+=proceeds;this.realized+=proceeds-basis;this.fees+=fee;this.trades++;return proceeds;
+  }
+}
+class FlightMarket {
+  static marketRules={downProbability:.68,downMin:10,downSpan:14,upMin:10,upSpan:18,rallyMin:180,rallySpan:60,rallyGates:4};
+  constructor(random=Math.random){this.random=random;this.width=1000;this.height=640;this.interval=.16;this.reset();}
+  get birdX(){return this.width*.29;}
+  get speed(){return FlightMarket.speedAt(this.score);}
+  static speedAt(score){return Math.min(315,225+score*3);}
+  get canExit(){return this.state==='running'&&this.score>=8;}
+  // Log-price coordinates permit a sustained decline without negative prices.
+  // The initial sensitivity remains 0.70 per world pixel (7x the original).
+  priceAt(y){return Math.max(.01,128*Math.exp(Math.min(30,(320-y)*.7/128)));}
+  yAtPrice(price){return 320-Math.log(Math.max(.01,price)/128)*128/.7;}
+  reset(){
+    this.state='ready';this.y=320;this.vy=0;this.radius=16;this.score=0;this.time=0;this.distance=0;this.accumulator=0;this.sampleTime=0;
+    this.price=this.open=this.high=this.low=this.priceAt(this.y);this.pipes=[];this.history=[];this.lastCenter=320;this.reason='';this.outcome='';
+    this.portfolio=new Portfolio();this.generated=0;this.cameraY=0;this.route=[{at:0,center:320}];this.routeState={y:320,vy:-335,overrun:0};
+    this.rallyLeft=0;this.rallyStep=0;this.executions=[];this.lastFill=null;this.newCandle();
+  }
+  newCandle(){this.candle={open:this.price,high:this.price,low:this.price,close:this.price,distance:this.distance,time:this.time,span:this.speed*this.interval};}
+  start(amount=600){if(!Number.isFinite(amount)||amount<0||amount>2000)return false;this.reset();const before=this.fillSnapshot();this.portfolio.buy(amount,this.price);this.recordFill('buy',before,'opening');this.state='running';this.flap();this.addPipe();this.addPipe();this.addPipe();return true;}
+  fillSnapshot(){const p=this.portfolio;return {cash:p.cash,shares:p.shares,fees:p.fees};}
+  recordFill(side,before,reason){
+    const p=this.portfolio,units=Math.abs(p.shares-before.shares);if(units===0)return null;
+    const feeCents=p.fees-before.fees,cashDeltaCents=p.cash-before.cash;
+    const fill={id:this.executions.length+1,time:this.time,side,reason,price:this.price,units,feeCents,cashDeltaCents,grossCents:side==='buy'?-cashDeltaCents-feeCents:cashDeltaCents+feeCents};
+    this.executions.push(fill);this.lastFill=fill;return fill;
+  }
+  flap(){if(this.state==='running')this.vy=-335;}
+  pause(){if(this.state==='running')this.state='paused';}
+  resume(){if(this.state==='paused'){this.state='running';this.flap();}}
+  static pilot(y,vy,target){return y>target+12&&vy>-80;}
+  // Prove each segment with real fixed-step physics and extra vertical clearance.
+  // Carry the reference pilot's state forward, so independently valid segments join.
+  prove(center,gap,length,speed){
+    let {y,vy}=this.routeState,travel=0;const dt=1/120,required=length-this.routeState.overrun;
+    const from=this.route[this.route.length-1],targetAt=from.at+length-(this.generated===0?53:0),startAt=this.generated===0?0:from.at+53+this.routeState.overrun;
+    while(travel<=required){
+      if(FlightMarket.pilot(y,vy,center))vy=-335;
+      vy+=1000*dt;y+=vy*dt;travel+=speed*dt;
+      const t=Math.max(0,Math.min(1,(startAt+travel-from.at)/(targetAt-from.at))),viewCenter=from.center+(center-from.center)*t;
+      if(Math.abs(y-viewCenter)>292)return null;
+      if(travel>=required-(66+2*16+8)&&Math.abs(y-center)>gap/2-28)return null;
+    }
+    return {y,vy,overrun:travel-required};
+  }
+  addPipe(){
+    const first=this.generated===0,previous=this.pipes[this.pipes.length-1];
+    const index=this.generated+1,rules=FlightMarket.marketRules,rallyTrigger=index%30===0&&this.random()<.5;
+    if(rallyTrigger){this.rallyLeft=rules.rallyGates;this.rallyStep=(rules.rallyMin+this.random()*rules.rallySpan)/rules.rallyGates;}
+    const rally=this.rallyLeft>0,rallyPhase=rally?rules.rallyGates-this.rallyLeft+1:0;
+    const deltaY=rally?-this.rallyStep:this.random()<rules.downProbability?rules.downMin+this.random()*rules.downSpan:-(rules.upMin+this.random()*rules.upSpan);
+    let center=this.lastCenter+deltaY;
+    const shock=rally;
+    let gap=shock?Math.max(170,195-this.generated*.7):Math.max(150,180-this.generated*1.1);
+    const delta=center-this.lastCenter,speed=FlightMarket.speedAt(this.generated);
+    let spacing=first?390:Math.max(315,Math.ceil((Math.abs(delta)/190+.5)*speed)+106);
+    let proof=this.prove(center,gap,spacing,speed);
+    for(let attempts=0;!proof&&attempts<12;attempts++){spacing+=55;proof=this.prove(center,gap,spacing,speed);}
+    if(!proof){center=this.lastCenter;spacing=720;gap=180;proof=this.prove(center,gap,spacing,speed);}
+    if(!proof)throw new Error('Unable to generate a reachable flight segment');
+    const x=first?this.birdX+spacing-86:previous.x+spacing,actualDelta=center-this.lastCenter;
+    this.pipes.push({x,width:66,center,gap,passed:false,spacing,index,rally,rallyTrigger,rallyPhase,delta:actualDelta,regime:rally?'反弹 '+rallyPhase+'/'+rules.rallyGates:actualDelta<0?'短线反弹':'下行'});
+    this.route.push({at:this.distance+x+33-this.birdX,center});
+    this.routeState=proof;this.lastCenter=center;this.generated++;if(rally)this.rallyLeft--;
+  }
+  sample(){this.price=this.priceAt(this.y);this.high=Math.max(this.high,this.price);this.low=Math.min(this.low,this.price);this.candle.high=Math.max(this.candle.high,this.price);this.candle.low=Math.min(this.candle.low,this.price);this.candle.close=this.price;}
+  updateCamera(){
+    while(this.route.length>2&&this.route[1].at<=this.distance)this.route.shift();
+    const [a,b]=this.route;if(!b)return;
+    const t=Math.max(0,Math.min(1,(this.distance-a.at)/(b.at-a.at)));
+    this.cameraY=a.center+(b.center-a.center)*t-320;
+  }
+  trade(side,percent){
+    if(this.state!=='running'||!Number.isFinite(percent)||percent<1||percent>20)return 0;
+    const fraction=percent/100;
+    const before=this.fillSnapshot();
+    const value=side==='buy'?this.portfolio.buy(Math.round(this.portfolio.cash*fraction)/100,this.price):side==='sell'?this.portfolio.sell(fraction,this.price):0;
+    this.recordFill(side,before,'adjustment');this.checkBankruptcy();return value;
+  }
+  checkBankruptcy(){if(this.state==='running'&&this.portfolio.equity(this.price)<=0)this.end('总资产归零，本局破产','bankrupt');}
+  end(reason,kind='collision'){
+    if(this.state!=='running'&&this.state!=='paused')return;
+    const before=this.fillSnapshot();this.portfolio.sell(1,this.price);this.recordFill('sell',before,kind==='exit'?'exit':'forced');this.state='ended';this.reason=reason;
+    const pnl=this.portfolio.cash-this.portfolio.initial;
+    this.outcome=kind==='collision'||kind==='bankrupt'?'failed':pnl>0?'won':pnl<0?'loss':'flat';
+  }
+  exit(){if(!this.canExit)return false;this.end('已平仓，收益已扣除交易费用','exit');return true;}
+  update(dt){if(this.state!=='running')return;this.accumulator+=Math.min(.1,Math.max(0,dt));const step=1/120;while(this.accumulator+1e-10>=step&&this.state==='running'){this.tick(step);this.accumulator=Math.max(0,this.accumulator-step);}}
+  tick(dt){
+    this.time+=dt;const travel=this.speed*dt;this.distance+=travel;this.vy+=1000*dt;this.y+=this.vy*dt;this.updateCamera();this.sample();this.sampleTime+=dt;
+    if(this.sampleTime+1e-9>=this.interval){this.candle.span=this.distance-this.candle.distance;this.history.push(this.candle);this.sampleTime=Math.max(0,this.sampleTime-this.interval);this.newCandle();}
+    for(const p of this.pipes)p.x-=travel;
+    if(this.y-this.cameraY-this.radius<=0||this.y-this.cameraY+this.radius>=this.height){this.end('撞到天空边界，本局失败');return;}
+    for(const p of this.pipes){
+      const cx=Math.max(p.x-4,Math.min(this.birdX,p.x+p.width+4)),top=p.center-p.gap/2,bottom=p.center+p.gap/2;
+      const dyTop=Math.max(0,this.y-top),dyBottom=Math.min(0,this.y-bottom);
+      if((this.birdX-cx)**2+Math.min(dyTop**2,dyBottom**2)<=this.radius**2){this.end('撞到柱子，本局失败');return;}
+      if(!p.passed&&p.x+p.width+4<this.birdX-this.radius){p.passed=true;this.score++;}
+    }
+    this.pipes=this.pipes.filter(p=>p.x+p.width>-10);
+    if(this.pipes.length<3)this.addPipe();this.checkBankruptcy();
+  }
+}
+</script>
+<script>
+(() => {
+  const $=id=>document.getElementById(id),game=new FlightMarket(),canvas=$('game'),ctx=canvas.getContext('2d'),stage=$('stage');
+  const colors={up:'#ff454f',down:'#00d69b',gold:'#f0cc83'};
+  let best=0,lastState='',lastFrame=0,uiClock=0,ambient=0,rate=10;
+  try{const saved=Number(localStorage.getItem('candle-wings-best'));if(Number.isFinite(saved)&&saved>=0)best=Math.floor(saved);}catch{}
+  const money=n=>n.toFixed(2),cash=n=>(n/100).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2}),signed=n=>(n>=0?'+':'')+n.toFixed(2);
+  function tint(el,value){el.classList.remove('up','down');el.classList.add(value>=0?'up':'down');}
+  function sizeCanvas(el){const rect=el.getBoundingClientRect(),dpr=Math.min(2,window.devicePixelRatio||1),w=Math.max(1,Math.round(rect.width*dpr)),h=Math.max(1,Math.round(rect.height*dpr));if(el.width!==w||el.height!==h){el.width=w;el.height=h;}return {w:rect.width,h:rect.height,dpr};}
+  function resize(){const size=sizeCanvas(canvas),oldX=game.birdX;game.width=Math.max(320,size.w/Math.max(1,size.h)*640);for(const p of game.pipes)p.x+=game.birdX-oldX;refresh();}
+  function chart(){
+    const el=$('result-chart'),{w,h,dpr}=sizeCanvas(el),c=el.getContext('2d'),min=game.low-1,max=game.high+1;
+    const x=t=>10+t/Math.max(.01,game.time)*(w-20),y=p=>h-12-(p-min)/(max-min)*(h-24);
+    c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);c.beginPath();c.moveTo(x(0),y(game.open));
+    for(let i=0;i<game.history.length;i++){const k=game.history[i],end=game.history[i+1]?.time??game.candle.time;c.lineTo(x(end),y(k.close));}
+    c.lineTo(x(game.time),y(game.price));c.strokeStyle='#a5c4cd';c.lineWidth=1.5;c.stroke();
+    for(const f of game.executions){const px=x(f.time),py=y(f.price),direction=f.side==='buy'?1:-1;c.fillStyle=f.side==='buy'?colors.up:colors.down;c.beginPath();c.moveTo(px,py);c.lineTo(px-3,py+direction*7);c.lineTo(px+3,py+direction*7);c.closePath();c.fill();}
+  }
+  function refresh(){
+    const p=game.portfolio,equity=p.equity(game.price),pnl=equity-p.initial,delta=game.price-game.open;
+    $('price').textContent=money(game.price);$('change').textContent=signed(delta)+' ('+signed(delta/game.open*100)+'%)';tint($('change'),delta);
+    for(const key of ['open','high','low'])$(key).textContent=money(game[key]);
+    $('equity').textContent='¥'+cash(equity);$('pnl').textContent=signed(pnl/100)+' ('+signed(pnl/p.initial*100)+'%)';tint($('pnl'),pnl);
+    $('cash').textContent=cash(p.cash);$('position').textContent=cash(p.value(game.price));$('exposure').textContent=(equity>0?p.value(game.price)/equity*100:0).toFixed(1)+'%';$('average').textContent=p.shares>0?money(p.cost/(100*p.shares)):'—';$('realized').textContent=signed(p.realized/100);tint($('realized'),p.realized);
+    $('buy-amount').textContent='¥'+cash(Math.round(p.cash*rate/100));$('sell-amount').textContent='≈ ¥'+cash(p.saleQuote(rate/100,game.price).proceeds);
+    $('buy').disabled=game.state!=='running'||Math.round(p.cash*rate/100)<=1;$('sell').disabled=game.state!=='running'||p.shares<=0;$('exit').disabled=!game.canExit;
+    $('exit').textContent=game.canExit?'平仓离场 · 结束本局':'通过 8 关解锁离场 · '+Math.min(8,game.score)+'/8';
+    $('fees').textContent=cash(p.fees);
+    $('score').textContent=String(game.score).padStart(2,'0');$('best').textContent=String(best).padStart(2,'0');
+    const seconds=Math.floor(game.time);$('clock').textContent=String(Math.floor(seconds/60)).padStart(2,'0')+':'+String(seconds%60).padStart(2,'0');
+    const next=game.pipes.find(p=>!p.passed);$('regime').textContent=next?'#'+next.index+' · '+next.regime:'下行市场';
+    $('welcome').hidden=game.state!=='ready';$('paused').hidden=game.state!=='paused';$('ended').hidden=game.state!=='ended';
+    $('pause').disabled=game.state==='ready'||game.state==='ended';$('pause').textContent=game.state==='paused'?'▶':'Ⅱ';$('pause').setAttribute('aria-label',game.state==='paused'?'继续游戏':'暂停游戏');
+    $('status').textContent=({ready:'● 等待开盘',running:'● 飞行中',paused:'Ⅱ 已暂停',ended:'○ 已结算'})[game.state];
+    if(game.state==='ended'&&lastState!=='ended'){
+      window.birdCloud?.submit(game.score);
+      best=Math.max(best,game.score);try{localStorage.setItem('candle-wings-best',String(best));}catch{}
+      $('best').textContent=String(best).padStart(2,'0');$('result-title').textContent=({failed:'本局失败',won:'止盈成功',loss:'亏损离场',flat:'平仓离场'})[game.outcome];
+      $('reason').textContent=game.reason;$('final-pnl').textContent=(pnl>=0?'+':'−')+'¥'+cash(Math.abs(pnl));tint($('final-pnl'),pnl);
+      $('final-score').textContent=game.score;$('result-best').textContent='最高 '+best+' 分';$('final-equity').textContent='¥'+cash(equity);$('final-return').textContent=signed(pnl/p.initial*100)+'%';
+      $('final-prices').textContent=money(game.open)+' → '+money(game.price);$('final-range').textContent=money(game.low)+' – '+money(game.high);
+      $('final-gross').textContent=signed((pnl+p.fees)/100);$('final-fees').textContent='−'+cash(p.fees);
+      $('fill-count').textContent=game.executions.length+' 笔成交 · 红买 / 绿卖';
+      $('fill-log').textContent=game.executions.slice(-6).map(f=>f.time.toFixed(1)+'s '+(f.side==='buy'?'买':'卖')+' @'+money(f.price)+' · ¥'+cash(Math.abs(f.cashDeltaCents))+' · 费 '+cash(f.feeCents)).join('\n')||'本局无成交';
+      if(game.outcome==='failed'){$('flash').classList.remove('hit');void $('flash').offsetWidth;$('flash').classList.add('hit');}
+      $('notice').textContent='本局已结算，新一局资金重新发放。';
+    }
+    if(game.state==='ended')chart();lastState=game.state;
+  }
+  window.pauseBirdForAccount=()=>{game.pause();refresh();};
+  window.applyBirdCloudBest=value=>{if(Number.isSafeInteger(value)&&value>=0){best=Math.max(best,value);try{localStorage.setItem('candle-wings-best',String(best));}catch{}$('best').textContent=String(best).padStart(2,'0');}};
+  function start(){const raw=$('initial').value.trim(),amount=Number(raw);if(raw===''||!Number.isFinite(amount)||amount<0||amount>2000){$('initial-error').textContent='请输入 0 至 2,000 元的投入金额。';return;}$('initial-error').textContent='';game.start(amount);$('notice').textContent='飞行中 · A 加仓 / D 减仓';$('start').blur();refresh();}
+  function act(){if(game.state==='ready')start();else if(game.state==='running')game.flap();else if(game.state==='paused')game.resume();refresh();}
+  function trade(side){if(game.state!=='running')return;const amount=game.trade(side,rate),f=game.lastFill;$('notice').textContent=amount>0?(side==='buy'?'买入支出':'卖出到账')+' ¥'+cash(amount)+' · @'+money(f.price)+' · 费 ¥'+cash(f.feeCents):side==='buy'?'可用现金不足本次加仓。':'当前无可卖持仓，或金额不足 0.01 元。';refresh();}
+  stage.addEventListener('pointerdown',e=>{if(e.target.closest('button,input,label')||game.state==='ended')return;if(e.pointerType==='mouse'&&e.button!==0)return;e.preventDefault();$('rate').blur();act();});
+  $('start').addEventListener('click',start);$('resume').addEventListener('click',()=>{game.resume();refresh();});
+  $('restart').addEventListener('click',()=>{game.reset();$('notice').textContent='新一局 ¥2,000，选择开局投入。';refresh();});
+  for(const [id,value]of [['stake-10',200],['stake-50',1000],['stake-100',2000]])$(id).addEventListener('click',()=>{$('initial').value=String(value);$('initial-error').textContent='';});
+  $('buy').addEventListener('click',()=>trade('buy'));$('sell').addEventListener('click',()=>trade('sell'));$('exit').addEventListener('click',()=>{game.exit();refresh();});
+  $('rate').addEventListener('input',()=>{const value=Number($('rate').value);if(Number.isInteger(value)&&value>=1&&value<=20){rate=value;$('rate').setAttribute('aria-invalid','false');refresh();}else $('rate').setAttribute('aria-invalid','true');});
+  $('rate').addEventListener('change',()=>{$('rate').value=String(rate);$('rate').setAttribute('aria-invalid','false');});
+  $('rate').addEventListener('keydown',e=>{if(e.code==='Enter'){e.preventDefault();$('rate').value=String(rate);$('rate').setAttribute('aria-invalid','false');$('rate').blur();}});
+  $('pause').addEventListener('click',()=>{game.state==='paused'?game.resume():game.pause();refresh();});
+  document.addEventListener('keydown',e=>{
+    if(e.isComposing||e.ctrlKey||e.metaKey||e.altKey)return;
+    const editing=e.target&&e.target.closest&&e.target.closest('input,textarea,[contenteditable="true"]');
+    if(e.code==='Space'&&(!editing||e.target.id==='rate')){e.preventDefault();if(!e.repeat)act();return;}
+    if(editing)return;
+    if(e.code==='ArrowUp'){e.preventDefault();if(!e.repeat)act();}
+    if(e.code==='KeyA'||e.code==='KeyD'){e.preventDefault();if(!e.repeat)trade(e.code==='KeyA'?'buy':'sell');}
+    if((e.code==='KeyP'||e.code==='Escape')&&!e.repeat){if(game.state==='running')game.pause();else if(game.state==='paused')game.resume();refresh();}
+  });
+  document.addEventListener('visibilitychange',()=>{lastFrame=0;if(document.hidden){game.pause();refresh();}});
+  window.addEventListener('blur',()=>{game.pause();refresh();lastFrame=0;});
+  function roundRect(x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=1;ctx.stroke()}}
+  function drawBird(x,y,t,vy) {
+    ctx.save();ctx.translate(x,y);ctx.rotate(Math.max(-.35,Math.min(.9,vy/620)));
+    ctx.shadowColor='#f0cc8345';ctx.shadowBlur=21;
+    ctx.fillStyle='#b79553';ctx.beginPath();ctx.moveTo(-16,2);ctx.lineTo(-30,-5);ctx.lineTo(-23,10);ctx.lineTo(-12,11);ctx.fill();
+    ctx.fillStyle=colors.gold;ctx.beginPath();ctx.ellipse(0,0,20,16,0,0,Math.PI*2);ctx.fill();ctx.shadowBlur=0;
+    ctx.fillStyle='#ffe4ab';ctx.beginPath();ctx.ellipse(5,5,12,9,-.2,0,Math.PI*2);ctx.fill();
+    ctx.save();ctx.translate(-7,1);ctx.rotate(Math.sin(t*22)*.38);ctx.fillStyle='#c5984f';ctx.beginPath();ctx.ellipse(-3,3,11,6,-.45,0,Math.PI*2);ctx.fill();ctx.restore();
+    ctx.fillStyle='#f7b968';ctx.beginPath();ctx.moveTo(16,-2);ctx.lineTo(29,4);ctx.lineTo(16,8);ctx.closePath();ctx.fill();
+    ctx.fillStyle='#f9f7e9';ctx.beginPath();ctx.arc(9,-5,6,0,Math.PI*2);ctx.fill();ctx.fillStyle='#17282e';ctx.beginPath();ctx.arc(11,-5,2.9,0,Math.PI*2);ctx.fill();ctx.fillStyle='#fff';ctx.beginPath();ctx.arc(12,-6,1,0,Math.PI*2);ctx.fill();
+    ctx.strokeStyle='#ffe4ab';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(-5,-13);ctx.quadraticCurveTo(-8,-23,-13,-21);ctx.stroke();ctx.restore();
+  }
+  function drawPipe(p,ghost=false) {
+    const top=p.center-p.gap/2, bottom=p.center+p.gap/2;ctx.save();if(ghost)ctx.globalAlpha=.28;
+    for(const [y,h,isTop] of [[0,Math.max(0,top),true],[bottom,Math.max(0,game.height-bottom),false]]){
+      if(h<=0)continue;
+      const gradient=ctx.createLinearGradient(p.x,0,p.x+p.width,0);gradient.addColorStop(0,'#203b40');gradient.addColorStop(.48,'#182f35');gradient.addColorStop(1,'#11252d');
+      roundRect(p.x,y,p.width,h,3,gradient,'#46696b');
+      ctx.strokeStyle='#6a979633';ctx.beginPath();ctx.moveTo(p.x+8,y+8);ctx.lineTo(p.x+8,y+h-8);ctx.stroke();
+      roundRect(p.x-4,isTop?top-15:bottom,p.width+8,15,3,'#28454a','#608987');
+      ctx.fillStyle='#88b9b65c';ctx.fillRect(p.x+6,isTop?top-13:bottom+2,p.width-12,2);
+      ctx.fillStyle='#78a5a222';for(let j=y+30;j<y+h-24;j+=30)ctx.fillRect(p.x+p.width-14,j,5,1);
+    }
+    ctx.restore();
+  }
+
+  function drawCandle(k,x,width){const py=p=>game.yAtPrice(p)-game.cameraY;ctx.strokeStyle=k.close>=k.open?colors.up:colors.down;ctx.fillStyle=ctx.strokeStyle;ctx.lineWidth=1;ctx.beginPath();ctx.moveTo(x,py(k.high));ctx.lineTo(x,py(k.low));ctx.stroke();const y=Math.min(py(k.open),py(k.close));ctx.fillRect(x-width/2,y,width,Math.max(1.5,Math.abs(py(k.open)-py(k.close))));}
+  function draw(){
+    const W=game.width,H=640;ctx.setTransform(canvas.width/W,0,0,canvas.height/H,0,0);ctx.clearRect(0,0,W,H);ctx.fillStyle='#0d1921';ctx.fillRect(0,0,W,H);ctx.strokeStyle='#8aa5ae12';ctx.lineWidth=1;ctx.beginPath();for(let x=-(game.distance%80);x<W;x+=80){ctx.moveTo(x,0);ctx.lineTo(x,H);}for(let y=0;y<H;y+=80){ctx.moveTo(0,y);ctx.lineTo(W,y);}ctx.stroke();ctx.font='10px Consolas,monospace';ctx.fillStyle='#5e7784';ctx.textAlign='right';for(let y=80;y<H;y+=80)ctx.fillText(money(game.priceAt(y+game.cameraY)),W-9,y-7);
+    if(game.state==='ready'){
+      for(let i=0;i<20;i++){const x=game.birdX-36-i*30;if(x<0)break;const y=320+Math.sin(i*.5)*35;drawCandle({open:game.priceAt(y-7),close:game.priceAt(y+9),high:game.priceAt(y-15),low:game.priceAt(y+19)},x,22);}
+      drawPipe({x:W-110,center:300,gap:240,width:66},true);
+    }else{
+      ctx.save();ctx.strokeStyle='#74d5d13a';ctx.lineWidth=1;ctx.setLineDash([4,7]);ctx.beginPath();game.pipes.forEach((p,i)=>{const x=p.x+p.width/2;i?ctx.lineTo(x,p.center-game.cameraY):ctx.moveTo(x,p.center-game.cameraY);});ctx.stroke();ctx.restore();
+      for(const k of [...game.history.slice(-200),game.candle]){const x=game.birdX-30-(game.distance-k.distance);if(x< -20||x>W)continue;drawCandle(k,x,Math.max(3,k.span*.72));}
+      ctx.save();ctx.strokeStyle='#f0cc8340';ctx.setLineDash([4,6]);ctx.beginPath();ctx.moveTo(0,game.y-game.cameraY);ctx.lineTo(W,game.y-game.cameraY);ctx.stroke();ctx.restore();
+      if(game.portfolio.shares>0){const cost=game.portfolio.cost/(100*game.portfolio.shares),rawY=game.yAtPrice(cost)-game.cameraY,y=Math.max(74,Math.min(H-25,rawY));ctx.save();ctx.strokeStyle=colors.gold;ctx.fillStyle=colors.gold;ctx.setLineDash([7,5]);ctx.beginPath();if(rawY>=74&&rawY<=H-25){ctx.moveTo(0,y);ctx.lineTo(game.birdX+24,y);ctx.stroke();}ctx.font='11px "Microsoft YaHei",sans-serif';ctx.textAlign='left';ctx.fillText((rawY<74?'↑ ':rawY>H-25?'↓ ':'')+'成本 '+money(cost),12,y-7);ctx.restore();}
+      for(const p of game.pipes)if(p.x<W+80)drawPipe({...p,center:p.center-game.cameraY});
+      const next=game.pipes.find(p=>!p.passed);
+      if(next&&next.x>W-35){ctx.fillStyle='#91b5bb';ctx.textAlign='right';ctx.font='11px "Microsoft YaHei",sans-serif';ctx.fillText('下一通道 ◁',W-12,next.center-game.cameraY-10);ctx.strokeStyle='#74d5d18c';ctx.beginPath();ctx.moveTo(W-20,next.center-game.cameraY);ctx.lineTo(W,next.center-game.cameraY);ctx.stroke();}
+    }
+    const y=game.state==='ready'?320+Math.sin(ambient*2.5)*8:game.y-game.cameraY;drawBird(game.birdX,y,game.state==='ready'?ambient:game.time,game.state==='ready'?0:game.vy);
+    if(game.state==='running'){ctx.font='10px Consolas,monospace';ctx.textAlign='center';ctx.fillStyle='#f0cc83';ctx.fillText(money(game.price),game.birdX,y-34);}
+  }
+  function frame(now){const dt=lastFrame?Math.min(.1,(now-lastFrame)/1000):0;lastFrame=now;ambient+=dt;game.update(dt);uiClock+=dt;if(uiClock>=.08||lastState!==game.state){refresh();uiClock=0;}draw();requestAnimationFrame(frame);}
+  new ResizeObserver(resize).observe(stage);resize();refresh();requestAnimationFrame(frame);
+})();
+</script>
+<script src="supabase-config.js"></script>
+<script src="cloud.js"></script>
+</body>
+</html>
